@@ -59,8 +59,6 @@ jobs:
 
     - name: Build and push Docker images
       run: |
-            # Build the Docker images
-            docker-compose -f compose.yml build
         
             # Debug: Echo secrets
             echo "AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}"
