@@ -36,5 +36,7 @@ jobs:
         aws configure set region ${{ secrets.AWS_DEFAULT_REGION }}
     
     - name: Login to Amazon ECR
-      run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_DEFAULT_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_DEFAULT_REGION }}.amazonaws.com
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+      with:
+        registry: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_DEFAULT_REGION }}.amazonaws.com
