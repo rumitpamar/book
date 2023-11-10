@@ -11,10 +11,15 @@ RUN dotnet publish /app/src/Acme.BookStore.HttpApi.Host/Acme.BookStore.HttpApi.H
     dotnet publish /app/src/Acme.BookStore.AuthServer/Acme.BookStore.AuthServer.csproj -c Release -o /app/publish/auth &&\
     dotnet publish /app/src/Acme.BookStore.DbMigrator/Acme.BookStore.DbMigrator.csproj -c Release -o /app/publish/mig
 
+# FROM mcr.microsoft.com/dotnet/sdk:7.0 AS db-migration
+# WORKDIR /app
+# COPY --from=serverbuild /app/publish/mig .
+# CMD ["dotnet", "Acme.BookStore.DbMigrator.dll"]
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS db-migration
 WORKDIR /app
 COPY --from=serverbuild /app/publish/mig .
 CMD ["dotnet", "Acme.BookStore.DbMigrator.dll"]
+
 
 FROM base AS backend
 WORKDIR /app
