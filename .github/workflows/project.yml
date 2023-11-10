@@ -40,3 +40,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v2
       with:
         registry: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_DEFAULT_REGION }}.amazonaws.com
+    
+    - name: Build and push Docker images
+      run: |
+          docker-compose build
