@@ -92,7 +92,7 @@
 
 
 services:
-  db:
+  db: 
     image: postgres
     container_name: bookstore-db
     restart: always

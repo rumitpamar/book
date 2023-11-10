@@ -15,9 +15,9 @@ RUN dotnet publish /app/src/Acme.BookStore.HttpApi.Host/Acme.BookStore.HttpApi.H
 # WORKDIR /app
 # COPY --from=serverbuild /app/publish/mig .
 # CMD ["dotnet", "Acme.BookStore.DbMigrator.dll"]
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS db-migration
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS migrator
 WORKDIR /app
-COPY --from=serverbuild /app/publish/mig .
+COPY --from=build /app/publish/mig .
 CMD ["dotnet", "Acme.BookStore.DbMigrator.dll"]
 
 
