@@ -86,3 +86,24 @@ jobs:
     #         docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_DEFAULT_REGION }}.amazonaws.com/${{ secrets.DB }}:latest --target db .
     #         docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_DEFAULT_REGION }}.amazonaws.com/${{ secrets.DB }}:latest
                        
+
+
+    - name: Update ECS service
+      run: |
+         aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER }} --service ${{ secrets.HOST }} --force-new-deployment
+
+
+         
+    - name: Update ECS service
+      run: |
+         aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER }} --service ${{ secrets.AUTH }} --force-new-deployment
+
+
+    - name: Update ECS service
+      run: |
+          aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER }} --service ${{ secrets.WEB }} --force-new-deployment
+
+          
+    - name: Update ECS service
+      run: |
+          aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER }} --service ${{ secrets.MIGRATOR }} --force-new-deployment
