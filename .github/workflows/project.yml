@@ -77,6 +77,27 @@ jobs:
              docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_DEFAULT_REGION }}.amazonaws.com/${{ secrets.HOST }}:latest
                 
 
+    - name: Update ECS service
+      run: |
+          aws ecs update-service --cluster bookstore-cluster --service app --force-new-deployment --debug
+
+
+         
+    - name: Update ECS service
+      run: |
+         aws ecs update-service --cluster bookstore-cluster --service migrator --force-new-deployment --debug
+
+
+    - name: Update ECS service
+      run: |
+        aws ecs update-service --cluster bookstore-cluster --service auth --force-new-deployment --debug
+
+          
+    - name: Update ECS service
+      run: |
+          aws ecs update-service --cluster bookstore-cluster --service web --force-new-deployment --debug
+
+          
 
     # - name: Build and push Docker image - DB
     #   run: |
@@ -105,32 +126,6 @@ jobs:
     #   run: |
     #         aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER }} --service ${{ secrets.MIGRATOR }} --force-new-deployment
 
-
-
-
-
-
-    - name: Update ECS service
-      run: |
-          aws ecs update-service --cluster bookstore-cluster --service app --force-new-deployment --debug
-
-
-         
-    - name: Update ECS service
-      run: |
-         aws ecs update-service --cluster bookstore-cluster --service migrator --force-new-deployment --debug
-
-
-    - name: Update ECS service
-      run: |
-        aws ecs update-service --cluster bookstore-cluster --service auth --force-new-deployment --debug
-
-          
-    - name: Update ECS service
-      run: |
-          aws ecs update-service --cluster bookstore-cluster --service web --force-new-deployment --debug
-
-          
 
           
 
