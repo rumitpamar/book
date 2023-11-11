@@ -267,3 +267,5 @@ src/Acme.BookStore.Blazor.Server.Tiered/Logs/*
 !certificate.pfx
 node_modules
 # appsettings.*.json
+
+#random
