@@ -63,9 +63,9 @@ jobs:
         docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_DEFAULT_REGION }}.amazonaws.com/${{ secrets.WEB }}:latest
   
   
-    - name: Update ECS service
-      run: |
-            aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER }} --service ${{ secrets.repo2 }} --force-new-deployment
+    # - name: Update ECS service
+    #   run: |
+    #         aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER }} --service ${{ secrets.repo2 }} --force-new-deployment
   
     - name: Build and push Docker image -Auth
       run: |
